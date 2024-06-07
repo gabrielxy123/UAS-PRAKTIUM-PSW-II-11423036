@@ -10,8 +10,9 @@ class Pengelola extends Authenticatable
     use HasFactory;
     protected $guard = 'pengelolas';
 
-    public function lokasi() {
-        return $this->belongsTo(Lokasi::class, 'lokasi_id'); // updated to lokasi_id
+    public function lokasi()
+    {
+        return $this->belongsTo(Lokasi::class, 'lokasi_id');
     }
 
     public function lapangans()

@@ -9,4 +9,9 @@ class Lokasi extends Model
 {
     use HasFactory;
     protected $table = 'lokasis';
+
+    public function pengelolas()
+    {
+        return $this->hasMany(Pengelola::class, 'lokasi_id');
+    }   
 }

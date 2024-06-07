@@ -12,10 +12,6 @@
                 <a class="nav-link" href="/admin/tambah">Pengelola</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/member
-                ">Member</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="/admin/lapangan">Lapangan</a>
             </li>
             <li class="nav-item">

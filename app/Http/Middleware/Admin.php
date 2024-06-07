@@ -13,11 +13,12 @@ class Admin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if ($request->user()->role == 'admin') {
-            return $next($request);
-        }
-        abort(403, 'Akses Anda di tolak, anda bukan admin');
+    public function handle(Request $request, Closure $next, $guard = null): Response
+{
+    if (auth($guard)->check() && auth($guard)->user()->role == 'admin') {
+        return $next($request);
     }
+    abort(403, 'Akses Anda ditolak, Anda bukan admin');
+}
+
 }

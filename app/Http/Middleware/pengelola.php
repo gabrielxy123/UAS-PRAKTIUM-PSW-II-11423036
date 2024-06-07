@@ -15,10 +15,10 @@ class pengelola
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
-        if ($request->user()->role == 'pengelola') {
+        $user = $request->user();
+        if ($user && $user->role == 'pengelola') {
             return $next($request);
         }
-        abort(403, 'Akses Anda di tolak, anda bukan pengelola');
+        abort(403, 'Akses Anda ditolak');
     }
 }

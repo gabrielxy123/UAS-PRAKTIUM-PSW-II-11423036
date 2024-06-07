@@ -15,9 +15,10 @@ class Member
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->role == 'user') {
+        $user = $request->user();
+        if ($user && $user->role == 'member') {
             return $next($request);
         }
-        abort(403, 'Anda belum menjadi member di aplikasi ini');
+        abort(403, 'Akses Anda ditolak');
     }
 }

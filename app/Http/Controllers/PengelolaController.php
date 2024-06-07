@@ -6,8 +6,15 @@ use App\Models\Booking;
 use App\Models\Lapangan;
 use App\Models\Lokasi;
 use App\Models\Pengelola;
+use App\Models\Pengguna;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session as FacadesSession;
+use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class PengelolaController extends Controller
 {
@@ -62,9 +69,33 @@ class PengelolaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function createmember(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'noHp' => 'required|string|max:15',
+            'username' => 'required|string|min:5|max:20',
+            'password' => 'required|string|min:5|max:10',
+
+        ],[
+            'nama.required' => 'Nama harus diisi',
+            'nomor_hp.required' => 'Nomor Hp harus diisi',
+            'username.required' => 'Username harus diisi',
+            'username.min' => 'Username minimal 5 karakter',
+            'password.required' => 'Password harus diisi',
+            'password.min' => 'Password minimal 5 karakter',
+        ]);
+
+        DB::table('penggunas')->insert([
+            'nama' => $validatedData['nama'],
+            'noHp' => $validatedData['noHp'],
+            'username' => $validatedData['username'],
+            'password' => Hash::make($validatedData['password']),
+        ]);
+
+        FacadesSession::flash('success', 'Data Member baru dengan nama "' . $validatedData['nama'] . '" berhasil ditambahkan!');
+
+        return redirect()->route('indexmember');
     }
 
     /**
@@ -134,4 +165,25 @@ class PengelolaController extends Controller
         }
         return redirect()->back()->with('error', 'Pesanan Lapangan tidak ditemukan.');
     }
+
+
+   public function indexlokasi(){
+    $lokasi = Lokasi::all();
+    $pengelola = Pengelola::all();
+    return view('pengelola.lokasi', compact('lokasi', 'pengelola'));
+   }
+
+   public function indexmember(){
+    $member = Pengguna::all();
+    return view('pengelola.member', compact('member'));
+   }
+
+   public function hapusmember($id){
+    DB::table('penggunas')->where('id', $id)->delete();
+
+        FacadesSession::flash('success', 'Data Member berhasil dihapus!');
+
+        return Redirect()->route('indexmember');
+   }
 }
+

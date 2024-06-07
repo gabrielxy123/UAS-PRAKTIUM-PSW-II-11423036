@@ -12,13 +12,7 @@
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/booking">Booking</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Daftar Member</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('daftarbookindex')}}">Daftar Pesanan</a>
+            <a class="nav-link" href="/member/registrasi">Registrasi Member</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -29,6 +23,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="/admin/login">Login Admin</a></li>
                 <li><a class="dropdown-item" href="/pengelola/login">Login Pengelola</a></li>
+                <li><a class="dropdown-item" href="/member/login">Login Member</a></li>
             </ul>
         </li>
         

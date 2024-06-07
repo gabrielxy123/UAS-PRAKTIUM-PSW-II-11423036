@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DaftarBookingController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\PengelolaController;
 use App\Models\Pengelola;
 
@@ -59,5 +61,12 @@ Route::prefix('/pengelola')->namespace('App\Http\Controllers')->group(function()
     Route::get('/booking', [PengelolaController::class, 'booking']);
     Route::post('/booking/terima/{id}', [PengelolaController::class, 'terimabooking'])->name('terimabooking');
     Route::post('/booking/tolak/{id}', [PengelolaController::class, 'tolakbooking'])->name('tolakbooking');
+});
+
+Route::prefix('/member')->namespace('App\Http\Controllers')->group(function(){
+    Route::match(['post', 'get'],'login', [LoginController::class, 'LoginMember'])->name('loginmemb');
+    Route::match(['post', 'get'], 'registrasi', [LoginController::class, 'RegisterMember'])->name('registermemb');
+    Route::get('index', 'MemberController@index');
+    Route::get('logout', 'MemberController@logoutmember');
 });
 

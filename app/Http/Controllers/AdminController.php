@@ -129,7 +129,7 @@ class AdminController extends Controller
 
         Session::flash('success', 'Data Pengelola berhasil dihapus!');
 
-        Return Redirect()->route('indextambah');
+        return Redirect()->route('indextambah');
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
@@ -11,7 +12,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.member');
+        return view('member.index');
     }
 
     /**
@@ -57,8 +58,9 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function logoutmember()
     {
-        //
+        Auth::guard('member')->logout();
+        return redirect('/');
     }
 }

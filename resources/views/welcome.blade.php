@@ -51,7 +51,7 @@
                       <span class="color-b">Kurangi berat badanmu dengan bermain badminton
                     </h1>
                     <p class="intro-subtitle intro-price">
-                      <a href="/booking"><span class="price-a">Booking Disini</span></a>
+                      <a href="/member/login"><span class="price-a">Booking Disini</span></a>
                     </p>
                   </div>
                 </div>
@@ -74,7 +74,7 @@
                       <span class="color-b">Kurangi berat badanmu dengan bermain badminton
                     </h1>
                     <p class="intro-subtitle intro-price">
-                      <a href="/booking"><span class="price-a">Booking Disini</span></a>
+                      <a href="/member/login"><span class="price-a">Booking Disini</span></a>
                     </p>
                   </div>
                 </div>
